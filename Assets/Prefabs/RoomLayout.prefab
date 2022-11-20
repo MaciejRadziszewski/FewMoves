@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2876432113632900436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7579050105840294497}
+  - component: {fileID: 1401922444211081702}
+  m_Layer: 0
+  m_Name: RoomLayout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7579050105840294497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876432113632900436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9864366, y: -0.39598492, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401922444211081702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876432113632900436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97652f5cf971e8244af636a553d1453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomNumber: 0
+  spawnedObject: {fileID: 0}
+  block: {fileID: 578232943047624709, guid: f4b044c18640cfc47a2c9af4f8206fb0, type: 3}
+  shootingEnemy: {fileID: 4846966471372191940, guid: d80128b2d0de03242aa5170438582718, type: 3}
+  meleeEnemy: {fileID: 3267890811676682527, guid: 6c59343a8178969418ab71ae25873e56, type: 3}
+  battery: {fileID: 1869580965856521410, guid: 6692944450c7d8e47bbaa741ea3d44e2, type: 3}
+  player: {fileID: 0}
+  turnState: {fileID: 0}
+  shootingEnemyController: {fileID: 0}
+  meleeEnemyController: {fileID: 0}
+  levelSpawner: {fileID: 0}
