@@ -78,7 +78,6 @@ public class LevelSpawner : MonoBehaviour
         }
         treshold += batterySpawnRatio;
         //Debug.Log(randomX.ToString() + ", " + randomY.ToString() + element);
-        spawnedObject.transform.position = transform.position + new Vector3(randomX, randomY, 0f);
         switch (element)
         {
             //1 - blok
@@ -107,6 +106,7 @@ public class LevelSpawner : MonoBehaviour
             default:
                 break;
         }
+        spawnedObject.transform.position = transform.position + new Vector3(randomX, randomY, 0f);
         roomItems.Add(spawnedObject);
         taken[randomX, randomY] = element;
         treshold = 0;
