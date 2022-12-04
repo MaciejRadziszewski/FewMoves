@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootingEnemyController : MonoBehaviour
 {
     public Transform playerMovePoint;
-    public float moveSpeed = 1000f;
+    public float moveSpeed = 5f;
     public Transform movePoint;
     public LayerMask Obstacles;
     public TurnState turnState;
@@ -24,20 +24,20 @@ public class ShootingEnemyController : MonoBehaviour
     {
         if (reloadTime == 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, movePoint.position) < 0.1f)
             {
                 xDiff = playerMovePoint.position.x - movePoint.position.x;
                 yDiff = playerMovePoint.position.y - movePoint.position.y;
                 if (Mathf.Abs(xDiff) > 0.5 && Mathf.Abs(yDiff) > 0.5)
                 {
-                    if (xDiff > 0.5f)
+                    if (xDiff > 0.5f && !Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), 0.2f, Obstacles))
                         movePoint.position += new Vector3(1f, 0f, 0f);
-                    else if (xDiff < -0.5f)
+                    else if (xDiff < -0.5f && !Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), 0.2f, Obstacles))
                         movePoint.position += new Vector3(-1f, 0f, 0f);
-                    else if (yDiff > 0.5f)
+                    else if (yDiff > 0.5f && !Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), 0.2f, Obstacles))
                         movePoint.position += new Vector3(0f, 1f, 0f);
-                    else if (yDiff < -0.5f)
+                    else if (yDiff < -0.5f && !Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), 0.2f, Obstacles))
                         movePoint.position += new Vector3(0f, -1f, 0f);
                 }
                 else if (xDiff <= 5f && xDiff > 0.5f)
@@ -72,6 +72,7 @@ public class ShootingEnemyController : MonoBehaviour
     {
         battery.transform.position = transform.position;
         GameObject pickup = Instantiate(battery);
+        Destroy(movePoint);
     }
     void Start()
     {
@@ -93,6 +94,6 @@ public class ShootingEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }
 }

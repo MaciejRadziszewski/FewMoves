@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public Transform movePoint;
-    public float moveSpeed;
+    public float moveSpeed = 5f;
     public string direction;
     public TurnState turnState;
     // Start is called before the first frame update
@@ -17,14 +17,14 @@ public class BulletController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.Equals("Obstacles"))
+        if (collision.gameObject.tag.Equals("Obstacle"))
         {
             Destroy(this.gameObject);
         }
     }
-        public void movement()
+    public void movement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         switch (direction)
         {
             case "Right":
@@ -47,8 +47,12 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }
 
+    public void OnDestroy()
+    {
+        Destroy(movePoint);
+    }
 
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public enum State
 {
     PLAYERTURN,
-    ENEMYTURN
+    ENEMYTURN,
 }
 
 public class TurnState : MonoBehaviour
@@ -24,35 +24,44 @@ public class TurnState : MonoBehaviour
     {
         foreach (GameObject bullet in bullets)
         {
-            controller = bullet.GetComponent<BulletController>();
-            controller.movement();
+            if (bullet.gameObject != null)
+            {
+                controller = bullet.GetComponent<BulletController>();
+                controller.movement();
+            }
+            else
+            {
+                Destroy(bullet);
+            }
+
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        state = State.PLAYERTURN;
+        //state = State.SPAWNTURN;
         //waveText.text = wave.ToString();
     }
 
     void Update()
     {
-        if (spawner.enemies.Count == 0)
-        {
-            state = State.PLAYERTURN;
-            spawner.layouts[0].GetComponent<RoomLayout>().spawnFromLayout();
-        }
-
-        if(state == State.ENEMYTURN)
-        {
-            spawner.moveEnemies();
-            bulletTime++;
-            if(bulletTime == 1)
+            if (spawner.enemies.Count == 0 && bullets.Count == 0)
             {
-                menageBullets();
-                bulletTime = 0;
+                state = State.PLAYERTURN;
+                //spawner.layouts[0].GetComponent<RoomLayout>().spawnFromLayout();
             }
-            state = State.PLAYERTURN;
-        }
+
+            if (state == State.ENEMYTURN)
+            {
+                spawner.moveEnemies();
+                bulletTime++;
+                if (bulletTime == 1)
+                {
+                    menageBullets();
+                    bulletTime = 0;
+                }
+                state = State.PLAYERTURN;
+            }
+        
     }
 }
